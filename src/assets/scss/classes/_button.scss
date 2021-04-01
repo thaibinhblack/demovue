@@ -1,0 +1,38 @@
+
+.button {
+  padding: fn.rem(7px);
+  font-size:  $font-size-default;
+  cursor: pointer;
+  border: 1px solid colors.$gray-1;
+  outline: none;
+
+  &:focus, &:active {
+    outline: none;
+  }
+
+  &.\--close {
+    background-color: transparent;
+    
+  }
+
+  &.\--radius {
+    width: fn.rem(35);
+    height: fn.rem(35);
+    text-align: center;
+    border-radius: 50%;
+  }
+
+  &.\--warning {
+    background: colors.$color-warning;
+  }
+
+  &.\--outline-warning {
+    border: 1px solid colors.$color-modal-background-warning;
+    color: colors.$color-modal-background-warning;
+
+    &:hover {
+      background: colors.$color-modal-background-warning;
+      color: colors.$color-modal-text-color-warning-hover;
+    }
+  }
+}
