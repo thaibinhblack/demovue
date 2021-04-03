@@ -1,10 +1,11 @@
 
 .button {
-  padding: fn.rem(7px);
+  padding: fn.rem(7px) fn.rem(15);
   font-size:  $font-size-default;
   cursor: pointer;
   border: 1px solid colors.$gray-1;
   outline: none;
+  background-color: transparent;
 
   &:focus, &:active {
     outline: none;
@@ -16,6 +17,7 @@
   }
 
   &.\--radius {
+    padding: fn.rem(7);
     width: fn.rem(35);
     height: fn.rem(35);
     text-align: center;

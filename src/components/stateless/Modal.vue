@@ -1,6 +1,7 @@
 <template>
   <transition name="modal-fade">
-    <div  :class="{     
+    <div  
+      :class="{     
         'modal': true,
         '--active': value,
         '--full': full
@@ -9,16 +10,18 @@
       <div class="modal__container">
         <div 
           v-show="value"
+          v-click-outside="closeOutside"
           class="modal__dialog"
           role="dialog"
           :aria-labelledby="title"
         >
           <div class="modal__header">
             <slot name="header">
-              <h3>{{title || ''}}</h3>
+              <h3> {{title || ''}} </h3>
               <button 
                 type="button"
-                class="button --close --radius --outline-warning"
+                class="button --close --radius"
+                @click="close"
               >
                 <i class="bi bi-x" />
               </button>
@@ -33,11 +36,12 @@
             <slot name="footer" />
             <button
               type="button"
-              class="btn-green"
+              class="button --outline-warning"
               @click="close"
               aria-label="Close modal"
             >
-              Close me!
+              <i class="bi bi-x" />
+              {{ $t('modal.close') }}
             </button>
           </div>
         </div>
@@ -47,30 +51,42 @@
 </template>
 
 <script>
-  export default {
-    name: 'Modal',
+export default {
+  name: 'Modal',
 
-    props: {
-      value: {
-        type: Boolean,
-        default: false,
-      },
-      title: String,
-      full: {
-        type: Boolean,
-        default: false,
-      },
+  props: {
+    value: {
+      type: Boolean,
+      default: false,
+    },
+    title: String,
+    full: {
+      type: Boolean,
+      default: false,
+    },
+    outside: {
+      type: Boolean,
+      default: true,
+    },
+  },
+
+  methods: {
+    close() {
+      this.$emit('input', false);
     },
 
-    methods: {
-      close() {
-        this.$emit('input', false);
-      },
-    },
-  };
+    closeOutside() {
+      if(this.value === true && this.outside === true) {
+        this.close();
+      }
+    }
+  },
+};
 </script>
 
 <style <style lang="scss">
+$height-header-footer: fn.rem(210);
+$heigh-body: 100% - $height-header-footer;
 .modal {
   $this: &;
 
@@ -112,6 +128,10 @@
     }
   
   } 
+  &__header, &__body, &__footer {
+    padding: fn.rem(15);
+    width: 100%;
+  }
 
   &__header {
     display: flex;
@@ -122,18 +142,15 @@
   }
 
   &__body {
-    
+    height: calc(100% - 135px);
+    padding: fn.rem(25) fn.rem(15);
   }
 
   &__footer {
-    height: fn.rem(150);
+    border-top: 1px solid colors.$color-modal-border;
+    height: fn.rem(60);
     display: flex;
     align-items: center;
-  }
-
-  &__header, &__body, &__footer {
-    padding: fn.rem(15);
-    width: 100%;
   }
 }
 </style>
