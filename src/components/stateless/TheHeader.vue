@@ -35,16 +35,19 @@ export default {
       const vm = this;
       this.languages =  [
         {
+           key: 'vietnam',
           name: vm.$t('language.vietnam'),
           icon: iconVN,
           value: 'vi'
         },
         {
+           key: 'english',
           name: vm.$t('language.english'),
           icon: iconEN,
           value: 'en'
         }
       ];
+      this.selectedLanguage.name = this.$t(`language.${this.selectedLanguage.key}`);
     }
   },
 
@@ -64,17 +67,24 @@ export default {
   data: (vm) => ({
     languages: [
       {
+        key: 'vietnam',
         name: vm.$t('language.vietnam'),
         icon: iconVN,
         value: 'vi'
       },
       {
+        key: 'english',
         name: vm.$t('language.english'),
         icon: iconEN,
         value: 'en'
       }
     ],
-    selectedLanguage: {}
+    selectedLanguage: {
+      key: 'vietnam',
+      name: vm.$t('language.vietnam'),
+      icon: iconVN,
+      value: 'vi'
+    }
   }),
 
   watch: {
@@ -89,6 +99,8 @@ export default {
         }))
       }
     }
+  },
+  created() {
   }
 }
 </script>
