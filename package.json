@@ -12,8 +12,10 @@
     "bootstrap": "^4.6.0",
     "bootstrap-icons": "^1.4.1",
     "core-js": "^3.6.5",
+    "highlight.js": "^10.7.1",
     "vue": "^2.6.11",
     "vue-i18n": "^8.24.2",
+    "vue-prism-editor": "^1.2.2",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
   },

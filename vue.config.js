@@ -1,4 +1,6 @@
 // vue.config.js
+const breakpoints = require('./breakpoints.json');
+
 module.exports = {
   lintOnSave: false,
   chainWebpack: config => {
@@ -20,6 +22,10 @@ module.exports = {
           @use "@/assets/scss/variables/colors";
           @use "@/assets/scss/variables/fonts";
           @use "@/assets/scss/functions" as fn;
+          $BREAKPOINT-SM: ${breakpoints.SM};
+          $BREAKPOINT-MD: ${breakpoints.MD};
+          $BREAKPOINT-LG: ${breakpoints.LG};
+          $BREAKPOINT-XL: ${breakpoints.XL};
         `
       }
     }

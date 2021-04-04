@@ -28,6 +28,20 @@
     background: colors.$color-warning;
   }
 
+  &.\--primary {
+    background-color: colors.$color-primary;
+  }
+
+  &.\--outline-primary {
+    border: 1px solid colors.$color-primary;
+    color: colors.$color-text-dark;
+
+    &:hover {
+      background: colors.$color-primary;
+      color: colors.$white-1
+    }
+  }
+
   &.\--outline-warning {
     border: 1px solid colors.$color-modal-background-warning;
     color: colors.$color-modal-background-warning;

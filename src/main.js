@@ -6,8 +6,10 @@ import router from '@/router';
 import store from '@/store';
 import i18n from  '@/i18n';
 import directives from  '@/mixins/directives';
+import plugins from '@/mixins/plugins';
 
 Vue.use(directives);
+Vue.use(plugins);
 Vue.config.productionTip = false;
 
 new Vue({

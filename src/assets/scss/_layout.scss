@@ -6,6 +6,11 @@ html, body {
   background-color: colors.$color-bg-default;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 h1, .h1 {
   font-size: fn.rem(35);
   line-height: (70 / 35);
@@ -15,8 +20,3 @@ h2, .h2 {
   font-size: fn.rem(25);
   line-height: (30 / 25);
 }
-
-// h3, .h3 {
-//   font-size: fn.rem(18);
-//   line-height: (22 / 18);
-// }

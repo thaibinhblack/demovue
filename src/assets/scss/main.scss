@@ -1,6 +1,8 @@
-@import "~bootstrap/scss/bootstrap-grid.scss";
+@import "~bootstrap/scss/bootstrap-grid";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "~highlight.js/scss/default";
 
+@import "@/assets/scss/mixins";
 @import "@/assets/scss/variables/fonts";
 @import "@/assets/scss/classes/text";
 @import "@/assets/scss/classes/button";

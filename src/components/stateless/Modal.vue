@@ -1,24 +1,34 @@
 <template>
   <transition name="modal-fade">
+    
     <div  
-      :class="{     
-        'modal': true,
-        '--active': value,
-        '--full': full
-      }"
+      :class="[
+        {     
+          'modal': true,
+          '--active': value,
+          '--full': full,
+        },
+        classPosition,
+      ]"
     >
       <div class="modal__container">
         <div 
           v-show="value"
           v-click-outside="closeOutside"
-          class="modal__dialog"
+          :class="[
+            {
+              'modal__dialog': true,
+            },
+            classPosition,
+          ]"
           role="dialog"
           :aria-labelledby="title"
         >
           <div class="modal__header">
             <slot name="header">
-              <h3> {{title || ''}} </h3>
+              <h3> {{title || ''}}</h3>
               <button 
+                v-show="!closeX"
                 type="button"
                 class="button --close --radius"
                 @click="close"
@@ -51,6 +61,13 @@
 </template>
 
 <script>
+export const POSTION_MODAL = {
+  center: '--center',
+  left: '--left',
+  right: '--right'
+}
+POSTION_MODAL.default = POSTION_MODAL.center;
+
 export default {
   name: 'Modal',
 
@@ -68,11 +85,26 @@ export default {
       type: Boolean,
       default: true,
     },
+    position: {
+      type: String,
+      default: POSTION_MODAL.default,
+    },
+    closeX: {
+      type: Boolean,
+      default: false,
+    } 
+  },
+
+  computed: {
+    classPosition: (vm) => (POSTION_MODAL[vm.position] || POSTION_MODAL.default)
   },
 
   methods: {
     close() {
+      //update model
       this.$emit('input', false);
+      //event close
+      this.$emit('close', false);
     },
 
     closeOutside() {
@@ -103,6 +135,7 @@ $heigh-body: 100% - $height-header-footer;
     display: block;
   }
 
+
   &__container {
     display: flex;
     width: 100%;
@@ -110,9 +143,15 @@ $heigh-body: 100% - $height-header-footer;
     flex: 1;
     align-items: center;
     justify-content: center;
+
+    #{$this}.\--left &{
+      justify-content: right;
+    }
+
   }
 
   &__dialog {
+    position: absolute;
     width: 50%;
     background-color: colors.$color-modal-background-dialog;
     border: 1px solid colors.$color-modal-border;
@@ -126,6 +165,16 @@ $heigh-body: 100% - $height-header-footer;
       border-radius: 0;
       border: none;
     }
+
+    #{$this}.\--left & {
+      height: 100%;
+      left: 0;
+    }
+
+    #{$this}.\--right & {
+      height: 100%;
+      right: 0;
+    } 
   
   } 
   &__header, &__body, &__footer {
